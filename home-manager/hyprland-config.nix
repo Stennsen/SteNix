@@ -1,11 +1,5 @@
 { pkgs, lib, config, ... }:
 
-let
-  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
-    systemctl --user import-environment &
-  '';
-in
 {
 
   imports = [
@@ -30,7 +24,9 @@ in
       ###############
       exec-once = [
         "hypridle"
-        ''${startupScript}/bin/start''
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "systemctl --user import-environment"
+        "${pkgs.dunst}/bin/dunst"
       ];
 
       env = with lib.stylix; [

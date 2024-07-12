@@ -7,7 +7,7 @@
     ./firefox-config.nix
     ./zsh-config.nix
     ./yazi-config.nix
-    ./helix-config.nix
+    ./neovim-config.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
