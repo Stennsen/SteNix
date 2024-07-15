@@ -11,7 +11,10 @@
 
       background = [
         {
-          path = "${../assets/wallpaper.jpg}";
+      #    path = pkgs.fetchurl {
+      #            url = "https://cdna.artstation.com/p/assets/images/images/061/675/990/large/eugene-siryk-deezerroom1-night1-2160.jpg";
+      #            sha256 = "xve3FnuLqW9DHAhCjNp3Zr/eEzVzMTx10Zqo+iPf/QE=";
+      #          };
           blur_passes = 3;
           blur_size = 8;
         }
