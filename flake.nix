@@ -21,6 +21,20 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
+    nixosConfigurations.t480 = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/t480/configuration.nix
+        ./desktop/hyprland.nix
+        ./home-manager/home-manager.nix
+        ./virtualization/container.nix
+        ./style/stylix.nix
+        inputs.stylix.nixosModules.stylix
+        inputs.home-manager.nixosModules.default
+        inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+      ];
+    };
+
     nixosConfigurations.xps = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [

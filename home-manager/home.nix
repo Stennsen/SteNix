@@ -2,11 +2,10 @@
 
 {
   imports = [
-    ./hyprland-config.nix
+    ./hypr/hyprland-config.nix
     ./alacritty-config.nix
     ./firefox-config.nix
     ./zsh-config.nix
-    ./yazi-config.nix
     ./neovim-config.nix
   ];
 
@@ -77,10 +76,9 @@
   #  /etc/profiles/per-user/stennsen/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "hx";
+    EDITOR = "nvim";
     SHELL = "zsh";
     MOZ_USE_XINPUT2 = "1";
-    XDG_CURRENT_DESKTOP = "hyprland";
   };
 
   # Let Home Manager install and manage itself.

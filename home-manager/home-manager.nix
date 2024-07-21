@@ -11,6 +11,5 @@
     };
     backupFileExtension = "backup";
   };
-  programs.zsh.enable = true;
   users.users.stennsen.shell = pkgs.zsh;
 }

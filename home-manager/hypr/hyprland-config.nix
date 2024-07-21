@@ -33,14 +33,25 @@
         # "bitdepth,10"
         #"HYPRCURSOR_THEME,catppuccin-mocha-blue"
         #"HYPRCURSOR_SIZE,32"
+        "XDG_CURRENT_DEKSTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
       ];
 
       ################
       ### monitors ###
       ###############
-      monitor = [
-        "eDP-1,preferred,0x0,1"
-        ",preferred,auto,1"
+      # monitor = [
+      #   "eDP-1,preferred,0x0,1"
+      #   ",preferred,auto,1"
+      # ];
+      source = [
+        "~/.config/hypr/monitors.conf"
+        "~/.config/hypr/workspaces.conf"
+      ];
+      bindl = [
+        ",switch:on:Lid Switch,exec,hyprctl keyword monitor 'eDP-1, disable'"
+        ",switch:off:Lid Switch,exec,hyprctl keyword monitor 'eDP-1, enable'"
       ];
 
       ###################
@@ -120,7 +131,7 @@
 	    "$mainMod SHIFT, K, movewindow, u"
 	    "$mainMod SHIFT, J, movewindow, d"
 
-		"$mainMod,F,fullscreen"
+      "$mainMod,F,fullscreen"
       ];
 
       #bindl = [
