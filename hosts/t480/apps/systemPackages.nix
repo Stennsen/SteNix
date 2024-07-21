@@ -21,7 +21,7 @@
     zed-editor
     vscodium
     vesktop
-    firefox
+    keepassxc
   ];
   
   programs.thunar = {
