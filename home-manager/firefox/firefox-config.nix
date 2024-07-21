@@ -21,6 +21,7 @@
           Homepage = {
             StartPage = "previous-session";
           };
+          OfferToSaveLogins = false;
 
           /* ---- EXTENSIONS ---- */
           ExtensionSettings = {
