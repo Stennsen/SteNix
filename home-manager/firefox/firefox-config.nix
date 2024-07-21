@@ -18,7 +18,9 @@
         extraPolicies = {
           DisableTelemetry = true;
           pipewireSupport = true;
-          # add policies here...
+          Homepage = {
+            StartPage = "previous-session";
+          };
 
           /* ---- EXTENSIONS ---- */
           ExtensionSettings = {
@@ -44,6 +46,7 @@
             "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
             "extensions.pocket.enabled" = lock-false;
             "extensions.screenshots.disabled" = lock-true;
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = lock-true;
             "widget.use-xdg-desktop-portal.file-picker" = 1;
           };
         };
@@ -60,13 +63,14 @@
           name = "Stennsen";   # name as listed in about:profiles
           settings = {          # specify profile-specific preferences here; check about:config for options
             "browser.newtabpage.activity-stream.feeds.section.highlights" = false;
-            "browser.startup.homepage" = "https://nixos.org";
+            #"browser.startup.homepage" = "https://nixos.org";
             "browser.newtabpage.pinned" = [{
               title = "NixOS";
               url = "https://nixos.org";
             }];
             # add preferences for profile_0 here...
           };
+          userChrome = builtins.readFile ./userChrome.css;
         };
       };
     };

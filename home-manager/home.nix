@@ -4,7 +4,7 @@
   imports = [
     ./hypr/hyprland-config.nix
     ./alacritty-config.nix
-    ./firefox-config.nix
+    ./firefox/firefox-config.nix
     ./zsh-config.nix
     ./neovim-config.nix
   ];
