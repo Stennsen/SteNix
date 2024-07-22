@@ -35,19 +35,15 @@
               install_url = "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi";
               installation_mode = "force_installed";
             };
-            "addon@darkreader.org" = {
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
-              installation_mode = "force_installed";
-            };
             "@testpilot-containers" = {
               install_url = "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi";
               installation_mode = "force_installed";
             };
           };
-  
+
           /* ---- PREFERENCES ---- */
           # Set preferences shared by all profiles.
-          Preferences = { 
+          Preferences = {
             "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
             "extensions.pocket.enabled" = lock-false;
             "extensions.screenshots.disabled" = lock-true;
