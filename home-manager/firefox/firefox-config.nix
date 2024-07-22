@@ -39,6 +39,10 @@
               install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
               installation_mode = "force_installed";
             };
+            "@testpilot-containers" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi";
+              installation_mode = "force_installed";
+            };
           };
   
           /* ---- PREFERENCES ---- */
