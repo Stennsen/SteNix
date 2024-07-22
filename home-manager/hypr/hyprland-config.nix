@@ -74,6 +74,9 @@
       "$menu" = "${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons";
 
       "$screenshot" = ''${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f -'';
+      
+      "$brightnessUp" = "${pkgs.brightnessctl}/bin/brightnessctl set 10%+";
+      "$brightnessDown" = "${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
 
       #############
       ### input ###
@@ -102,6 +105,8 @@
       binde = [
         ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"
         ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
+        ", xf86monbrightnessup, exec, $brightnessUp"
+        ", xf86monbrightnessdown, exec, $brightnessDown"
       ];
 
       bind = [
