@@ -6,10 +6,11 @@
     ### CLI ###
     neovim
     wget
-    fastfetch
     git
 
     bat
+    btop
+    fastfetch
 
     ### GUI ###
     alacritty

@@ -9,7 +9,6 @@
     shellAliases = {
         ll = "ls -l";
         rebuild = "sudo nixos-rebuild switch --flake ~/.config/nixos#t480";
-	cat = "bat";
     };
     history = {
         size = 10000;
