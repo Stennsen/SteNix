@@ -12,10 +12,15 @@
 
     stylix.url = "github:danth/stylix";
 
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland"; # ?ref=v0.41.2";
-      submodules = true;
+    # hyprland = {
+    #   type = "git";
+    #   url = "https://github.com/hyprwm/Hyprland"; # ?ref=v0.41.2";
+    #   submodules = true;
+    # };
+    
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
@@ -25,7 +30,7 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/t480/configuration.nix
-        ./desktop/hyprland.nix
+        ./desktop/cosmic.nix
         ./home-manager/home-manager.nix
         ./virtualization/container.nix
         ./style/stylix.nix

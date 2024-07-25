@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./hypr/hyprland-config.nix
     ./alacritty-config.nix
     ./firefox/firefox-config.nix
     ./zsh-config.nix

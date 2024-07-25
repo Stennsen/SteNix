@@ -9,6 +9,7 @@
     git
 
     bat
+    tree
     btop
     fastfetch
 
@@ -23,8 +24,11 @@
     vscodium
     vesktop
     keepassxc
+
+    signal-desktop
+    telegram-desktop
   ];
-  
+
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
