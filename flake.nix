@@ -12,6 +12,7 @@
 
     stylix.url = "github:danth/stylix";
 
+    catppuccin.url = "github:catppuccin/nix";
     # hyprland = {
     #   type = "git";
     #   url = "https://github.com/hyprwm/Hyprland"; # ?ref=v0.41.2";
@@ -33,8 +34,8 @@
         ./desktop/cosmic.nix
         ./home-manager/home-manager.nix
         ./virtualization/container.nix
-        ./style/stylix.nix
-        inputs.stylix.nixosModules.stylix
+        ./style/catppuccin.nix
+        ./style/home.nix
         inputs.home-manager.nixosModules.default
         inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
       ];
