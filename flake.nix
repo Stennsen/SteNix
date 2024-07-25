@@ -35,7 +35,8 @@
         ./home-manager/home-manager.nix
         ./virtualization/container.nix
         ./style/catppuccin.nix
-        ./style/home.nix
+        ./style/cursor.nix
+        ./style/fonts.nix
         inputs.home-manager.nixosModules.default
         inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
       ];

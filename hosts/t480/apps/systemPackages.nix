@@ -9,6 +9,7 @@
     git
 
     bat
+    lsd
     tree
     btop
     fastfetch
