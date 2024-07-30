@@ -7,7 +7,8 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-        ll = "ls -l";
+        ll = "lsd -l";
+        ls = "lsd";
         rebuild = "sudo nixos-rebuild switch --flake ~/.config/nixos#t480";
     };
     history = {

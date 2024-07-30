@@ -16,7 +16,6 @@
 
     ### GUI ###
     alacritty
-    nwg-displays
     pwvucontrol
     coppwr
     alsa-scarlett-gui
@@ -24,6 +23,7 @@
     zed-editor
     vscodium
     vesktop
+
     keepassxc
 
     signal-desktop

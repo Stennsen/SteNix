@@ -22,6 +22,7 @@ in
   environment.systemPackages = with pkgs; [
     hypridle
     hyprlock
+    nwg-displays
   ];
   # enable PAM for hyprlock
   security.pam.services.hyprlock = {};
