@@ -1,0 +1,3 @@
+editor = "zed"
+blinking-cursor = true
+confirm-before-quit = false

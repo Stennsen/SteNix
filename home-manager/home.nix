@@ -2,8 +2,10 @@
 
 {
   imports = [
-    ./alacritty-config.nix
+    ./terminal/alacritty-config.nix
+    ./terminal/rio-config.nix
     ./firefox/firefox-config.nix
+    #./librewolf/librewolf-config.nix
     ./zsh-config.nix
     ./neovim-config.nix
   ];

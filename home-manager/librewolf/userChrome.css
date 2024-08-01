@@ -1,0 +1,4 @@
+/* Hide tab bar in FF Quantum */
+#TabsToolbar {
+    visibility: collapse !important;
+}
