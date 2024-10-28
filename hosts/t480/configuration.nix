@@ -16,6 +16,12 @@
   services.hardware.bolt.enable = true;
 
   # Use the systemd-boot EFI boot loader.
+  nix.optimise.automatic = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
   boot.loader.systemd-boot = {
     enable = true;
     configurationLimit = 50;

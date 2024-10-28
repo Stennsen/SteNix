@@ -16,7 +16,7 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -27,6 +27,7 @@
         ./desktop/cosmic.nix
         ./home-manager/home-manager.nix
         ./virtualization/container.nix
+        ./virtualization/virtual-machine.nix
         ./style/catppuccin.nix
         ./style/cursor.nix
         ./style/fonts.nix

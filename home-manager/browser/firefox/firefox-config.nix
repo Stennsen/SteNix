@@ -12,9 +12,9 @@
   in
 {
   programs = {
-    librewolf = {
+    firefox = {
       enable = true;
-      package = pkgs.wrapLibrewolf pkgs.librewolf-unwrapped {
+      package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
         extraPolicies = {
           DisableTelemetry = true;
           pipewireSupport = true;
@@ -27,16 +27,16 @@
           ExtensionSettings = {
             "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
             # uBlock Origin:
-            #"uBlock0@raymondhill.net" = {
-            #  install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-            #  installation_mode = "force_installed";
-            #};
-            "{3c078156-979c-498b-8990-85f7987dd929}" = {
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi";
+            "uBlock0@raymondhill.net" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
               installation_mode = "force_installed";
             };
             "@testpilot-containers" = {
               install_url = "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi";
+              installation_mode = "force_installed";
+            };
+            "7esoorv3@alefvanoon.anonaddy.me" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/libredirect/latest.xpi";
               installation_mode = "force_installed";
             };
           };

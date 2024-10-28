@@ -20,7 +20,6 @@
     coppwr
     alsa-scarlett-gui
 
-    zed-editor
     vscodium
     vesktop
 
@@ -28,6 +27,12 @@
 
     signal-desktop
     telegram-desktop
+    tutanota-desktop
+    
+    moonlight-qt
+    
+    gcs
+    gimp
   ];
 
   programs.thunar = {

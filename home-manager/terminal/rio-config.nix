@@ -1,7 +1,7 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   programs.rio = {
     enable = true;
-    #settings = builtins.readFile ./rio-config.toml;
+    settings = lib.mkDefault(builtins.readFile ./rio-config.toml);
   };
 }

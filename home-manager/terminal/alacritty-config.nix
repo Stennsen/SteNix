@@ -11,6 +11,7 @@
         };
         blur = false;
         opacity = 0.7;
+        decorations = "None";
       };
     };
   };

@@ -4,10 +4,11 @@
   imports = [
     ./terminal/alacritty-config.nix
     ./terminal/rio-config.nix
-    ./firefox/firefox-config.nix
+    ./browser/firefox/firefox-config.nix
     #./librewolf/librewolf-config.nix
-    ./zsh-config.nix
-    ./neovim-config.nix
+    ./cli/zsh-config.nix
+    ./cli/neovim-config.nix
+    ./editor/zed.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

@@ -11,17 +11,17 @@
   # for btrfs
   # virtualisation.docker.storageDriver = "btrfs";
 
-  environment.systemPackages = [
-    pkgs.distrobox
-  ];
+  #environment.systemPackages = [
+  #  pkgs.distrobox
+  #];
 
   # Enable common container config files in /etc/containers
-  virtualisation.containers.enable = true;
-  virtualisation = {
-    podman = {
-      enable = true;
-      # Create a `docker` alias for podman, to use it as a drop-in replacement
-      dockerCompat = false;
-    };
-  };
+  # virtualisation.containers.enable = true;
+  # virtualisation = {
+  #   podman = {
+  #     enable = true;
+  #     # Create a `docker` alias for podman, to use it as a drop-in replacement
+  #     dockerCompat = false;
+  #   };
+  # };
 }
