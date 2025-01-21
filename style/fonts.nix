@@ -2,7 +2,7 @@
 {
   
   fonts.packages = with pkgs; [
-    nerdfonts
+    nerd-fonts.zed-mono
     dejavu_fonts
     noto-fonts-color-emoji
   ];

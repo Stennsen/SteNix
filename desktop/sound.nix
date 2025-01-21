@@ -10,5 +10,5 @@
     pulse.enable = true;
     jack.enable = true;
   };
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 }

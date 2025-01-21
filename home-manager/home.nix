@@ -2,13 +2,13 @@
 
 {
   imports = [
-    ./terminal/alacritty-config.nix
-    ./terminal/rio-config.nix
+    #./terminal/alacritty-config.nix
+    ./terminal/ghostty-config.nix
     ./browser/firefox/firefox-config.nix
     #./librewolf/librewolf-config.nix
-    ./cli/zsh-config.nix
-    ./cli/neovim-config.nix
-    ./editor/zed.nix
+    ./cli/shell/nushell/nushell.nix
+    ./cli/editor/helix.nix
+    ./editor/direnv.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -78,8 +78,8 @@
   #  /etc/profiles/per-user/stennsen/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
-    SHELL = "zsh";
+    EDITOR = "hx";
+    SHELL = "nu";
     MOZ_USE_XINPUT2 = "1";
   };
 

@@ -13,4 +13,5 @@
   };
   users.users.stennsen.shell = pkgs.zsh;
   programs.zsh.enable = true;
+  programs.nix-ld.enable = true;
 }

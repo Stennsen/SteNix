@@ -33,17 +33,9 @@
     
     gcs
     gimp
+    krita
+    inkscape
+    vlc
+    scribus
   ];
-
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-media-tags-plugin
-      thunar-archive-plugin
-      thunar-volman
-    ];
-  };
-  services.gvfs.enable = true;
-  services.tumbler.enable = true;
-  programs.xfconf.enable = true;
 }
