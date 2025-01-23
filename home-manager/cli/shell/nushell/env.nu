@@ -114,5 +114,5 @@ def update [] {
 
 alias rebuild = rebuild
 alias update = update
-alias suspend = systemcl suspend
+alias suspend = systemctl suspend
 alias ll = ls -l
