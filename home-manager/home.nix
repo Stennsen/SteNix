@@ -2,12 +2,11 @@
 
 {
   imports = [
-    #./terminal/alacritty-config.nix
     ./terminal/ghostty-config.nix
     ./browser/firefox/firefox-config.nix
-    #./librewolf/librewolf-config.nix
     ./cli/shell/nushell/nushell.nix
     ./cli/editor/helix.nix
+    ./cli/apps.nix
     ./editor/direnv.nix
   ];
 

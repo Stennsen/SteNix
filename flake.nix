@@ -20,7 +20,7 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.t480 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.StennoPad = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/t480/configuration.nix
