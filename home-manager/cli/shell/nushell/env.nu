@@ -100,19 +100,7 @@ $env.NU_PLUGIN_DIRS = [
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
-def rebuild [] {
-    sudo nixos-rebuild switch --flake ~/.config/nixos#t480    
-}
+$env.FLAKE = "/home/stennsen/.config/nixos"
 
-def update [] {
-    cd ~/.config/nixos
-    nix flake update
-    git add flake.lock
-    rebuild
-    cd -
-}
-
-alias rebuild = rebuild
-alias update = update
 alias suspend = systemctl suspend
 alias ll = ls -l
