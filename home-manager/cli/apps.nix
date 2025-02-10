@@ -1,7 +1,7 @@
 
 { pkgs, config, ... }:
 {
-  programs.btop = {
+  programs.bottom = {
     enable = true;
   };
   programs.nh = {

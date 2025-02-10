@@ -11,7 +11,6 @@
     };
     backupFileExtension = "home-manager.backup";
   };
-  users.users.stennsen.shell = pkgs.zsh;
-  programs.zsh.enable = true;
   programs.nix-ld.enable = true;
+  programs.ssh.startAgent = true;
 }
