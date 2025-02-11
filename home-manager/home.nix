@@ -24,7 +24,6 @@
 
   home.packages = with pkgs; [
     tree
-    fastfetch
     wget
     unzip
 
@@ -102,5 +101,14 @@
 
   programs.yazi = {
     enable = true;
+  };
+
+  programs.fastfetch = {
+    enable = true;
+    # settings = {
+    #   logo = {
+    #     source = "nixos_small";
+    #   };
+    # };
   };
 }
