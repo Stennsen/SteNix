@@ -4,7 +4,7 @@
   imports = [
     ./terminal/ghostty-config.nix
     ./browser/firefox/firefox-config.nix
-    ./cli/shell/nushell/nushell.nix
+    ./cli/shell/fish.nix
     ./cli/editor/helix.nix
     ./cli/apps.nix
     ./editor/direnv.nix
@@ -75,7 +75,7 @@
 
   home.sessionVariables = {
     EDITOR = "hx";
-    SHELL = "nu";
+    SHELL = "fish";
     MOZ_USE_XINPUT2 = "1";
   };
 
