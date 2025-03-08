@@ -55,7 +55,7 @@
     papers # gnome PDF viewer
 
     #
-    (callPackage ../pkgs/zen.nix {})
+    # (callPackage ../pkgs/zen.nix {})
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
