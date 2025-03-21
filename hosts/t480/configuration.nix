@@ -10,6 +10,11 @@
       ./hardware-configuration.nix
     ];
 
+  services.power-profiles-daemon.enable = false;
+  services.tlp = {
+    enable = true;
+  };
+
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.hardware.bolt.enable = true;
