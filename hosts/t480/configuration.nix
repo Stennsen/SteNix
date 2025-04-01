@@ -14,6 +14,10 @@
   services.tlp = {
     enable = true;
   };
+  services.throttled = {
+    enable = true;
+    extraConfig = (builtins.readFile ./throttled.conf);
+  };
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
