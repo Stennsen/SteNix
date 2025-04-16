@@ -8,7 +8,7 @@
     desktopManager.cosmic.enable = true;
     displayManager.cosmic-greeter.enable = true;
 
-    flatpak.enable = false;
+    flatpak.enable = true;
   };
   
   # environment.cosmic.excludePackages = with pkgs; [

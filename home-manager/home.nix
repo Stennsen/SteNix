@@ -27,12 +27,18 @@
     wget
     unzip
 
+    # CLI alternatives
+    bat
+    lsd
+
     ### GUI ###
     # Audio
     vlc
     pwvucontrol
     coppwr
     alsa-scarlett-gui
+    gnome-disk-utility
+    gnome-power-manager
 
     # PW
     keepassxc
@@ -50,6 +56,7 @@
     krita
     inkscape
     scribus
+    pipeline
 
     # Office
     papers # gnome PDF viewer
