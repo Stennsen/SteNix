@@ -61,6 +61,8 @@
     # Office
     papers # gnome PDF viewer
 
+    brave
+
     #
     # (callPackage ../pkgs/zen.nix {})
   ];
