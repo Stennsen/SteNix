@@ -2,6 +2,6 @@
 {
   programs.rio = {
     enable = true;
-    settings = lib.mkDefault(builtins.readFile ./rio-config.toml);
+    settings = lib.mkForce(lib.importTOML ./rio-config.toml);
   };
 }

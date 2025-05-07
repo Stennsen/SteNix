@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./terminal/ghostty-config.nix
+    ./terminal/rio-config.nix
     ./browser/firefox/firefox-config.nix
     ./cli/shell/fish.nix
     ./cli/editor/helix.nix
