@@ -21,6 +21,7 @@ in
         enable = true;
         flavor = theme;
         accent = color;
+        mako.enable = false; # https://github.com/catppuccin/nix/issues/552#issuecomment-2849046838
       };
     }
   ];

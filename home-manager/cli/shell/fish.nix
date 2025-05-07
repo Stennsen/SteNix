@@ -5,7 +5,7 @@
     fish = {
       enable = true;
       shellInit = ''
-        set -Ux FLAKE "/home/stennsen/.config/nixos"
+        set -Ux NH_FLAKE "/home/stennsen/.config/nixos"
         set -Ux fish_greeting
       '';
     };
