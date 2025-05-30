@@ -11,6 +11,8 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
+
+    # niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -19,6 +21,7 @@
       modules = [
         ./hosts/t480/configuration.nix
         ./desktop/cosmic.nix
+        # ./desktop/niri.nix
         ./home-manager/home-manager.nix
         ./virtualization/container.nix
         ./virtualization/virtual-machine.nix
