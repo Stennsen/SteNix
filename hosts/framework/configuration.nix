@@ -2,40 +2,43 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, self, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./disks.nix
+      ./persistence.nix
+      inputs.disko.nixosModules.disko
+      # self.settings.locale.nix
     ];
 
   services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;
   };
-  services.throttled = {
-    enable = true;
-    extraConfig = (builtins.readFile ./throttled.conf);
-  };
+  # services.throttled = {
+  #   enable = true;
+  #   extraConfig = (builtins.readFile ./throttled.conf);
+  # };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = false;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.hardware.bolt.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   nix.optimise.automatic = true;
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 30d";
+  # };
   boot.loader.systemd-boot = {
     enable = true;
     configurationLimit = 50;
     editor = false;
   };
-  boot.supportedFilesystems = [ "bcachefs" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -52,15 +55,6 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -83,6 +77,7 @@
 
   environment.systemPackages = with pkgs; [
     helix
+    firefox
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

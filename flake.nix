@@ -3,49 +3,91 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+    };
+    disko = {
+      url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    catppuccin.url = "github:catppuccin/nix";
-
-    # niri.url = "github:sodiboo/niri-flake";
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.StennoPad = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/t480/configuration.nix
-        ./desktop/cosmic.nix
-        # ./desktop/niri.nix
-        ./home-manager/home-manager.nix
-        ./virtualization/container.nix
-        ./virtualization/virtual-machine.nix
-        ./style/catppuccin.nix
-        ./style/cursor.nix
-        ./style/fonts.nix
-        inputs.home-manager.nixosModules.default
-        inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
-      ];
+    nixosConfigurations = {
+      framework = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          inputs.nixos-hardware.nixosModules.framework-11th-gen-intel
+          ./hosts/framework/configuration.nix
+          ./desktop/cosmic.nix
+          ./users/stennsen.nix
+          ./settings/locale.nix
+        ];
+      };
     };
 
-    nixosConfigurations.xps = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/xps/configuration.nix
-        ./desktop/hyprland.nix
-        ./home-manager/home-manager.nix
-        ./virtualization/container.nix
-        ./virtualization/virtual-machine.nix
-        ./style/stylix.nix
-        inputs.stylix.nixosModules.stylix
-        inputs.home-manager.nixosModules.default
-        inputs.nixos-hardware.nixosModules.dell-xps-15-9570
-      ];
-    };
+    apps =
+      let
+        pkgs = import nixpkgs { system = "x86_64-linux"; };
+        lib = nixpkgs.lib;
+        framework-setup-disks = pkgs.writeShellScript "framework-setup-disks" ''
+            set -euo pipefail
+            echo "
+
+            =========================
+            === configuring disks ===
+            =========================
+
+            "
+            sudo ${inputs.disko}/disko --mode destroy,format,mount ${./hosts/framework/disks.nix}
+          '';
+        framework-generate-config = pkgs.writeShellScript "framework-generate-config" ''
+            set -euo pipefail
+            echo "
+
+            =======================
+            === creating config ===
+            =======================
+
+            "
+            sudo nixos-generate-config --no-filesystems --show-hardware-config --root /mnt > ./hosts/framework/hardware-configuration.nix
+            git add ./hosts/framework/hardware-configuration.nix
+          '';
+        framework-install-nixos = pkgs.writeShellScript "framework-install-nixos" ''
+            set -euo pipefail
+            echo "
+
+            ========================
+            === installing NixOS ===
+            ========================
+
+            "
+            sudo mkdir -p /mnt/etc
+            sudo cp -r ./. /mnt/etc/nixos
+            sudo cp -r ./. /mnt/persist/etc/nixos
+            sudo nixos-install --flake /mnt/etc/nixos#framework --no-root-passwd
+          '';
+        framework-full-install = pkgs.writeShellScript "framework-full-install" ''
+            set -euo pipefail
+            ${framework-setup-disks}
+            ${framework-install-nixos}
+          '';
+        framework-clean-install = pkgs.writeShellScript "framework-full-install" ''
+            set -euo pipefail
+            ${framework-setup-disks}
+            ${framework-generate-config}
+            ${framework-install-nixos}
+          '';
+      in
+      {
+        x86_64-linux = {
+          framework-setup-disks = { type = "app"; program = "${framework-setup-disks}"; };
+          framework-generate-config = { type = "app"; program = "${framework-generate-config}"; };
+          framework-install-nixos = { type = "app"; program = "${framework-install-nixos}"; };
+          framework-full-install = { type = "app"; program = "${framework-full-install}"; };
+          framework-clean-install = { type = "app"; program = "${framework-clean-install}"; };
+        };
+      };
   };
 }
