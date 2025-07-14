@@ -42,7 +42,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "StennoPad"; # Define your hostname.
+  networking.hostName = "framework"; # Define your hostname.
   # Pick only one of the below networking options.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -78,7 +78,15 @@
   environment.systemPackages = with pkgs; [
     helix
     firefox
+    git
   ];
+
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/etc/nixos/";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
