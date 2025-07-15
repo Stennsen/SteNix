@@ -34,6 +34,7 @@
         # { directory = ".nixops"; mode = "0700"; }
         { directory = ".local/share/keyrings"; mode = "0700"; }
         ".local/share/direnv"
+        ".mozilla"
       ];
       files = [
         ".gitconfig"

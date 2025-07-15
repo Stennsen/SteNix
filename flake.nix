@@ -20,9 +20,10 @@
         modules = [
           inputs.nixos-hardware.nixosModules.framework-11th-gen-intel
           ./hosts/framework/configuration.nix
-          ./desktop/cosmic.nix
+          ./desktop/niri/niri.nix
           ./users/stennsen.nix
           ./settings/locale.nix
+          ./virtualization/virtual-machine.nix
         ];
       };
     };
