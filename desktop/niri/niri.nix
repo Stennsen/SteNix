@@ -20,13 +20,18 @@
   environment.systemPackages = with pkgs; [
     alacritty
     fuzzel
-    swaylock
+    hyprlock
+    ( callPackage ../../wrappers/hypridle/hypridle.nix {} )
     brightnessctl
     mako
     waybar
     swaybg
     swayidle
   ];
+
+  security.polkit.enable = true; # polkit
+  services.gnome.gnome-keyring.enable = true; # secret service
+  security.pam.services.swaylock = {};
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -35,7 +40,6 @@
   };
 
   hardware.graphics.enable = true;
-  security.polkit.enable = true;
 
   services.greetd = {
     enable = true;
@@ -56,4 +60,35 @@
   #     };
   #   };
   # };
+  
+  systemd.user.services.polkit-gnome-authentication-agent = {
+    description = "polkit-gnome-authentication-agent";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
+  systemd.services = {
+    "lock-on-sleep" = {
+      description = "Lock system on suspend";
+      before = [ "sleep.target" ];
+      serviceConfig = {
+        Type = "forking";
+        ExecStart = "loginctl lock-sessions";
+      };
+      wantedBy = [ "sleep.target" ];
+    };
+  };
+  services.logind = {
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "suspend";
+    lidSwitchDocked = "ignore";
+    powerKey = "suspend";
+  };
 }
