@@ -1,4 +1,7 @@
 { pkgs, config, lib, inputs, ... }:
+let
+  idle-pkg = ( pkgs.callPackage ../../wrappers/hypridle/hypridle.nix {} );
+in
 {
   imports = [
     ../sound.nix
@@ -20,13 +23,10 @@
   environment.systemPackages = with pkgs; [
     alacritty
     fuzzel
-    hyprlock
-    ( callPackage ../../wrappers/hypridle/hypridle.nix {} )
     brightnessctl
     mako
-    waybar
     swaybg
-    swayidle
+    idle-pkg
   ];
 
   security.polkit.enable = true; # polkit
@@ -61,17 +61,19 @@
   #   };
   # };
   
-  systemd.user.services.polkit-gnome-authentication-agent = {
-    description = "polkit-gnome-authentication-agent";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
+  systemd.user.services = {
+    polkit-gnome-authentication-agent = {
+      description = "polkit-gnome-authentication-agent";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
     };
   };
   systemd.services = {
@@ -85,10 +87,20 @@
       wantedBy = [ "sleep.target" ];
     };
   };
-  services.logind = {
-    lidSwitch = "suspend";
-    lidSwitchExternalPower = "suspend";
-    lidSwitchDocked = "ignore";
-    powerKey = "suspend";
+  programs.waybar.enable = true;
+  services = {
+    logind = {
+      lidSwitch = "suspend";
+      lidSwitchExternalPower = "suspend";
+      lidSwitchDocked = "ignore";
+      powerKey = "suspend";
+      extraConfig = ''
+        LidSwitchIgnoreInhibited=yes
+      '';
+    };
+    # hypridle = {
+    #   enable = true;
+    #   package = idle-pkg;
+    # };
   };
 }

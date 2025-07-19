@@ -1,13 +1,12 @@
-{ symlinkJoin, makeWrapper, pkgs }:
-let
-  lock-bin = "${pkgs.hyprlock}/bin/hyprlock";
-  lock-sh = pkgs.writeShellScriptBin "lock-sh" ''
-    pidof hyprlock || ${lock-bin}
-  '';
-in
+{ pkgs, lib, symlinkJoin, makeWrapper }:
 symlinkJoin {
   name = "hypridle";
-  paths = with pkgs; [ hypridle lock-sh brightnessctl systemd ];
+  paths = with pkgs; [
+    hypridle
+    hyprlock
+    # niri
+    brightnessctl
+  ];
   buildInputs = [ makeWrapper ];
   postBuild = ''
     wrapProgram $out/bin/hypridle \
