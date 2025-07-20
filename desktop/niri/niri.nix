@@ -1,11 +1,13 @@
 { pkgs, config, lib, inputs, ... }:
 let
-  idle-pkg = ( pkgs.callPackage ../../wrappers/hypridle/hypridle.nix {} );
+  idle-pkg = ( pkgs.callPackage ../../wrappers/swayidle/swayidle.nix {} );
+  idle-cmd = "${idle-pkg}/bin/swayidle";
 in
 {
   imports = [
     ../sound.nix
     ../../style/fonts.nix
+    # ./idle.nix
   ];
 
   programs.niri = {
@@ -75,6 +77,17 @@ in
         TimeoutStopSec = 10;
       };
     };
+    swayidle = {
+      description = "swayidle on niri";
+      partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      requisite = [ "graphical-session.target" ];
+      wantedBy = [ "niri.service" ];
+      serviceConfig = {
+        ExecStart = idle-cmd;
+        Restart = "on-failure";
+      };
+    };
   };
   systemd.services = {
     "lock-on-sleep" = {
@@ -98,9 +111,5 @@ in
         LidSwitchIgnoreInhibited=yes
       '';
     };
-    # hypridle = {
-    #   enable = true;
-    #   package = idle-pkg;
-    # };
   };
 }
