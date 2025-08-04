@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/way-edges/way-edges/master/config/config.schema.json",
+  // "$schema": "./schema.json",
+  "groups": [
+    { "name": "test",
+      "widgets": [
+        {
+          "edge": "top",
+          "monitor": "eDP-1",
+          "position": "left",
+          "layer": "overlay",
+          "margins": {
+            "left": "12.5%"
+          },
+          "widget": {
+            "type": "slider",
+            "thickness": 40,
+            "border_width": 6,
+            "length": "12.5%",
+            "fg_color": "#BD93F9",
+            "redraw_only_on_internal_update": true,
+            "preset": {
+              "type": "microphone"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

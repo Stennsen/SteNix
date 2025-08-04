@@ -7,21 +7,19 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      inputs.disko.nixosModules.disko
       ./hardware-configuration.nix
       ./disks.nix
       ./persistence.nix
-      inputs.disko.nixosModules.disko
-      # self.settings.locale.nix
+      ./apps.nix
     ];
+
+  hardware.bluetooth.enable = true;
 
   services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;
   };
-  # services.throttled = {
-  #   enable = true;
-  #   extraConfig = (builtins.readFile ./throttled.conf);
-  # };
 
   nixpkgs.config.allowUnfree = false;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -73,13 +71,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
-
-
-  environment.systemPackages = with pkgs; [
-    helix
-    firefox
-    git
-  ];
 
   programs.nh = {
     enable = true;

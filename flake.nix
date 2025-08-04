@@ -11,6 +11,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # way-edges = {
+    #   url = "github:way-edges/way-edges/8a8819d2ddbcf3a7f1105ec969519937da272cbd";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -24,6 +32,7 @@
           ./users/stennsen.nix
           ./settings/locale.nix
           ./virtualization/virtual-machine.nix
+          ./style/stylix.nix
         ];
       };
     };

@@ -6,6 +6,6 @@
     isNormalUser = true;
     description = "Stennsen";
     initialHashedPassword = "$y$j9T$BJDaYRt/xn.jCXJZRcCJv1$FZhgdj04vgi/ilGWOQ0.xiW6Qop.KLK2nDx47mLoNN6"; # generate passwords with `mkpasswd`
-    extraGroups = [ "wheel" "networkmanager" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "video" "libvirtd" ]; # Enable ‘sudo’ for the user.
   };
 }
