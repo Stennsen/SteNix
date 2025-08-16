@@ -1,3 +1,4 @@
+> This repository migrated to [Codeberg](https://codeberg.org/Stennsen/SteNix)
 # My NixOS configurations
 
 ## install
